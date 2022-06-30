@@ -1,0 +1,140 @@
+#databaseChangeLog:
+#-  changeSet:
+#      id: 4
+#      author: kaladewn
+#      preConditions:
+#      -  onFail: MARK_RAN
+#         not:
+#            tableExists:
+#               tableName: school
+#      changes:
+#      -  createTable:
+#            columns:
+#            -  column:
+#                  autoIncrement: true
+#                  constraints:
+#                     nullable: false
+#                     primaryKey: true
+#                     primaryKeyName: school_pkey
+#                  name: schoolId
+#                  type: BIGINT
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: name
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: city
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: codePostale
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: Country
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: Street
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: streetNumber
+#                  type: varchar(255)
+#            -  column:
+#                  name: phoneNumber
+#                  type: varchar(255)
+#            -  column:
+#                  name: email
+#                  type: varchar(255)
+#            tableName: school
+#-  changeSet:
+#      id: 5
+#      author: kaladewn
+#      preConditions:
+#      -  onFail: MARK_RAN
+#         not:
+#            tableExists:
+#               tableName: student
+#      changes:
+#      -  createTable:
+#            columns:
+#            -  column:
+#                  autoIncrement: true
+#                  constraints:
+#                     nullable: false
+#                     primaryKey: true
+#                     primaryKeyName: student_pkey
+#                  name: userId
+#                  type: BIGINT
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: firstName
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: createdDate
+#                  type: datetime
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: modifyDate
+#                  type: datetime
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: gender
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: birthDate
+#                  type: date
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: email
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: lastName
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: city
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: codePostale
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: Country
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: Street
+#                  type: varchar(255)
+#            -  column:
+#                  constraints:
+#                     nullable: false
+#                  name: streetNumber
+#                  type: varchar(255)
+#            -  column:
+#                  name: phoneNumber
+#                  type: varchar(255)
+#            tableName: student
