@@ -22,6 +22,10 @@ public class SchoolServiceImpl implements SchoolService {
 		this.schoolRepository = schoolRepository;
 	}
 
+	/**
+	 * @param name
+	 * @return school name
+	 */
 	@Override
 	public Optional<School> findByName(String name) {
 

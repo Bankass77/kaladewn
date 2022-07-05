@@ -24,17 +24,26 @@ public class StudentServiceImpl implements StudentService {
 		this.studentRepository = studentRepository;
 	}
 
+	/**
+	 * @param fullName
+	 * @return student with a full name
+	 */
 	@Override
 	public Optional<Student> getStudent(String fullName) {
 
 		return studentRepository.findByUserName(fullName);
 	}
 
+	/**
+	 * @param parameters
+	 * @return new Student
+	 */
 	@Override
 	public Student createStudent(CreateStudentParameters parameters) {
 
-		Student student = new Student(parameters.getUserName(), parameters.getBirthday(), LocalDateTime.now(), LocalDateTime.now(), 
-				parameters.getGender(), parameters.getPhoneNumber(), parameters.getEmail(), parameters.getAddress());
+		Student student = new Student(parameters.getUserName(), parameters.getBirthday(), LocalDateTime.now(),
+				LocalDateTime.now(), parameters.getGender(), parameters.getPhoneNumber(), parameters.getEmail(),
+				parameters.getAddress());
 		return studentRepository.save(student);
 	}
 
