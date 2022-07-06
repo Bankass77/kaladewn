@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	<changeSet author="kaladewn" id="3">
+		<insert tableName="school">
+			<column name="schoolId" valueNumeric="1" />
+			<column name="name" value="Lycée Kabral" />
+			<column name="city" value="Kalaban Koro"></column>
+			<column name="streetNumber" valueNumeric="78"></column>
+			<column name="street" value="Rue des Martyrs"></column>
+			<column name="codePostale" valueNumeric="99999"></column>
+			<column name="Country" value="Mali"></column>
+			<column name="phoneNumber" valueNumeric="0022378904532" />
+			<column name="email" value="lyceebankass@example.com" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

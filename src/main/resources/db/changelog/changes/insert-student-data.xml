@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	<changeSet author="kaladewn" id="1">
+		<insert tableName="student">
+			<column name="userId" valueNumeric="1" />
+			<column name="firstName" value="Adama" />
+			<column name="lastName" value="Sissoko" />
+			<column name="birthDate" value="2022-06-30" />
+			<column name="createdDate" value="2022-06-30T10:14:12+02:00" />
+			<column name="modifyDate" value="2022-06-30T10:14:12+02:00" />
+			<column name="gender" value="M"></column>
+			<column name="city" value="Kalaban Koro"></column>
+			<column name="streetNumber" valueNumeric="56"></column>
+			<column name="street" value="Rue de Cabral"></column>
+			<column name="codePostale" valueNumeric="9988"></column>
+			<column name="Country" value="Mali"></column>
+			<column name="email" value="example324@example.com"></column>
+			<column name="phoneNumber" value="0022378904532" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

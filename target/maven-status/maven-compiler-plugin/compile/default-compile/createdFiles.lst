@@ -1,0 +1,11 @@
+ml/kalanblow/kaladewn/domain/user/Address.class
+ml/kalanblow/kaladewn/domain/user/PhoneNumber.class
+ml/kalanblow/kaladewn/config/PageConfiguration.class
+ml/kalanblow/kaladewn/domain/user/Email.class
+ml/kalanblow/kaladewn/domain/user/CreateStudentParameters.class
+ml/kalanblow/kaladewn/service/SchoolService.class
+ml/kalanblow/kaladewn/util/DateTimeConverter.class
+ml/kalanblow/kaladewn/domain/user/web/SchoolController.class
+ml/kalanblow/kaladewn/domain/user/Gender.class
+ml/kalanblow/kaladewn/domain/user/UserName.class
+ml/kalanblow/kaladewn/util/PhoneNumberFormatter.class
