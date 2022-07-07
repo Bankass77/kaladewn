@@ -24,6 +24,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import ml.kalanblow.kaladewn.constraint.EmailConstraint;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -73,6 +74,7 @@ public class Student implements Serializable {
 
 	@NotNull
 	@Column(unique = true, nullable = false, updatable = true, name = "email")
+	@EmailConstraint
 	private Email email;
 
 	@NotNull
@@ -87,18 +89,18 @@ public class Student implements Serializable {
 			@AttributeOverride(name = "country", column = @Column(name = "country")) })
 	private Address address;
 
-
 	public Student(UserName userName2, LocalDate birthday, LocalDateTime now, LocalDateTime now2, Gender gender2,
 			PhoneNumber phoneNumber2, Email email2, Address address2) {
-		this.userName=userName2;
-		this.birthDate=birthday;
-		this.createdDate=now;
-		this.modifyDate=now2;
-		this.gender=gender2;
-		this.phoneNumber=phoneNumber2;
-		this.email=email2;
-		this.address=address2;
+		this.userName = userName2;
+		this.birthDate = birthday;
+		this.createdDate = now;
+		this.modifyDate = now2;
+		this.gender = gender2;
+		this.phoneNumber = phoneNumber2;
+		this.email = email2;
+		this.address = address2;
 	}
+
 	@PrePersist
 	void onCreate() {
 		this.setCreatedDate(LocalDateTime.now());
@@ -111,10 +113,9 @@ public class Student implements Serializable {
 	}
 
 	private String getfullName() {
-		return userName.getFirstName()!=null?userName.getFirstName().concat(" ").concat(userName.getLastName()):" " ;
-		
-		
-	}
+		return userName.getFirstName() != null ? userName.getFirstName().concat(" ").concat(userName.getLastName())
+				: " ";
 
+	}
 
 }

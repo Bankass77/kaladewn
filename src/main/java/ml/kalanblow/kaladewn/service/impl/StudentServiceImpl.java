@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ml.kalanblow.kaladewn.domain.user.CreateStudentParameters;
 import ml.kalanblow.kaladewn.domain.user.Student;
+import ml.kalanblow.kaladewn.domain.user.UserName;
 import ml.kalanblow.kaladewn.repository.StudentRepository;
 import ml.kalanblow.kaladewn.service.StudentService;
 
@@ -29,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
 	 * @return student with a full name
 	 */
 	@Override
-	public Optional<Student> getStudent(String fullName) {
+	public Optional<Student> getStudent(UserName fullName) {
 
 		return studentRepository.findByUserName(fullName);
 	}

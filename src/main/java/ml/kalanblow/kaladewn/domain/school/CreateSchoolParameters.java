@@ -1,12 +1,13 @@
-package ml.kalanblow.kaladewn.domain.user;
+package ml.kalanblow.kaladewn.domain.school;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import ml.kalanblow.kaladewn.domain.user.Address;
+import ml.kalanblow.kaladewn.domain.user.Email;
+import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class CreateSchoolParameters {
 
 	private final String name;

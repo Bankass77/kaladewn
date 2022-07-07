@@ -12,7 +12,6 @@ public class PhoneNumber {
 
 	private String phoneNumber;
 
-	
 	public String asString() {
 
 		return phoneNumber;

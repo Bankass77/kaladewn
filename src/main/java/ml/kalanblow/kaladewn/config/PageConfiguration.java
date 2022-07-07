@@ -17,22 +17,22 @@ public class PageConfiguration implements WebMvcConfigurer {
 
 		viewControllerRegistry.addViewController("/").setViewName("index");
 	}
-	
-	   @Bean
-	    public LocaleResolver localeResolver() {
-	        return new CookieLocaleResolver(); //<.>
-	    }
 
-	    @Bean
-	    public LocaleChangeInterceptor localeInterceptor() { //<.>
-	        LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
-	        localeInterceptor.setParamName("lang");
-	        return localeInterceptor;
-	    }
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new CookieLocaleResolver(); // <.>
+	}
 
-	    @Override
-	    public void addInterceptors(InterceptorRegistry registry) { //<.>
-	        registry.addInterceptor(localeInterceptor());
-	    }
+	@Bean
+	public LocaleChangeInterceptor localeInterceptor() { // <.>
+		LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
+		localeInterceptor.setParamName("lang");
+		return localeInterceptor;
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) { // <.>
+		registry.addInterceptor(localeInterceptor());
+	}
 
 }

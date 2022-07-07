@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ml.kalanblow.kaladewn.constraint.EmailConstraint;
 import ml.kalanblow.kaladewn.domain.user.Address;
 import ml.kalanblow.kaladewn.domain.user.Email;
 import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
@@ -55,5 +56,6 @@ public class School implements Serializable {
 	private PhoneNumber phoneNumber;
 
 	@Column(unique = true, nullable = false, updatable = true, name = "email")
+	@EmailConstraint
 	private Email email;
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	layout:decorate="~{layout/layout}"
+	th:with="activeMenuItem='school'"
+	lang="en">
+
+<head>
+<title th:text="#{menu.school}">School</title>
+</head>
+
+<body>
+	<div layout:fragment="page-content">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8"></div>
+		<h1 class="text-2xl font-semibold text-gray-900">School</h1>
+
+	</div>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+		<div class="py-4">
+		<span> Kaladewn show list of School</span>
+			<ol class="ml-4">
+				<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.id"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.name"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.city"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.street"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.streetNumber"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.codePostal"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.phoneNumber"></span></li>
+					<li th:each=" school: ${schools}" class="list-disc"><span
+					th:text="school.email"></span></li>
+			</ol>
+		</div>
+	</div>
+</body>
+
+</html>

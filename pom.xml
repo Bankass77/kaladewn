@@ -24,6 +24,8 @@
 		<frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
 		<frontend-maven-plugin.nodeVersion>V18.4.0</frontend-maven-plugin.nodeVersion>
 		<frontend-maven-plugin.npmVersion>8.12.1</frontend-maven-plugin.npmVersion>
+		<passay.version>1.6.0</passay.version>
+		<guava.version>30.1.1-jre</guava.version>
 	</properties>
 	<!-- Dependencies -->
 	<dependencies>
@@ -53,6 +55,18 @@
 		</dependency>
 		<!-- <dependency> <groupId>org.liquibase</groupId> <artifactId>liquibase-core</artifactId> 
 			</dependency> -->
+			<!-- https://mvnrepository.com/artifact/org.passay/passay -->
+		<dependency>
+			<groupId>org.passay</groupId>
+			<artifactId>passay</artifactId>
+			<version>${passay.version}</version>
+		</dependency>
+			<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

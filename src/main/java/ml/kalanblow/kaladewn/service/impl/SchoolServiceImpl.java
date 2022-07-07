@@ -3,7 +3,6 @@ package ml.kalanblow.kaladewn.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
+import ml.kalanblow.kaladewn.domain.school.CreateSchoolParameters;
+import ml.kalanblow.kaladewn.domain.school.EditSchoolParameters;
 import ml.kalanblow.kaladewn.domain.school.School;
 import ml.kalanblow.kaladewn.domain.user.Address;
-import ml.kalanblow.kaladewn.domain.user.CreateSchoolParameters;
-import ml.kalanblow.kaladewn.domain.user.EditSchoolParameters;
 import ml.kalanblow.kaladewn.domain.user.Email;
 import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
 import ml.kalanblow.kaladewn.exception.EntityType;
@@ -23,18 +22,21 @@ import ml.kalanblow.kaladewn.exception.ExceptionType;
 import ml.kalanblow.kaladewn.exception.KaladewnManagementException;
 import ml.kalanblow.kaladewn.repository.SchoolRepository;
 import ml.kalanblow.kaladewn.service.SchoolService;
+import ml.kalanblow.kaladewn.service.StudentService;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional
 @Slf4j
 public class SchoolServiceImpl implements SchoolService {
 
 	private final SchoolRepository schoolRepository;
+	private final StudentService studentService;
 
 	@Autowired
-	public SchoolServiceImpl(SchoolRepository schoolRepository) {
+	public SchoolServiceImpl(SchoolRepository schoolRepository, StudentService studentService) {
 		super();
 		this.schoolRepository = schoolRepository;
+		this.studentService = studentService;
 	}
 
 	/**
@@ -44,6 +46,7 @@ public class SchoolServiceImpl implements SchoolService {
 	@Override
 	public Optional<School> findByName(String name) {
 
+		log.debug("find school by Name:", name);
 		return schoolRepository.findByName(name);
 	}
 
@@ -72,7 +75,12 @@ public class SchoolServiceImpl implements SchoolService {
 		PhoneNumber phoneNumber = parameters.getPhoneNumber();
 		Address address = parameters.getAddress();
 
-		School school = new School(schoolName, address, phoneNumber, email);
+		log.info("Creating school {} with student {} ({})", schoolName, email, phoneNumber);
+		School school = new School();
+		school.setAddress(address);
+		school.setEmail(email);
+		school.setName(schoolName);
+		school.setPhoneNumber(phoneNumber);
 
 		return schoolRepository.save(school);
 	}
@@ -80,15 +88,14 @@ public class SchoolServiceImpl implements SchoolService {
 	@Override
 	public School editSchool(Long id, EditSchoolParameters editSchoolParameters) {
 
-		Optional<School> school = Optional.ofNullable(getSchool(id).orElseThrow(() -> new KaladewnManagementException()
-				.throwExceptionWithId(EntityType.School, ExceptionType.ENTITY_NOT_FOUND, String.valueOf(id), editSchoolParameters.getName())));
-		
-		school.get().set(editSchoolParameters.getName());
-		school.get().set(editSchoolParameters.getPhoneNumber());
-		school.get().set(editSchoolParameters.getEmail());
-		school.get().set(editSchoolParameters.getAddress());
-		
-		
+		Optional<School> school = Optional.ofNullable(getSchool(id)
+				.orElseThrow(() -> new KaladewnManagementException().throwExceptionWithId(EntityType.School,
+						ExceptionType.ENTITY_NOT_FOUND, String.valueOf(id), editSchoolParameters.getName())));
+
+		school.get().setName(editSchoolParameters.getName());
+		school.get().setPhoneNumber(editSchoolParameters.getPhoneNumber());
+		school.get().setEmail(editSchoolParameters.getEmail());
+		school.get().setAddress(editSchoolParameters.getAddress());
 		return school.get();
 	}
 
@@ -105,20 +112,18 @@ public class SchoolServiceImpl implements SchoolService {
 
 	@Override
 	public void deleteAllSchools() {
-		
+
 		schoolRepository.deleteAll();
 
 	}
 
 	@Override
-	public List<School> getAllSchoolList(String name, Pageable pageable) {
+	public Page<School> getAllSchoolList(Pageable pageable) {
 
-		Pageable pageWithFiveElements = PageRequest.of(1, 5);
-		Page<School> allSchool = schoolRepository.findAll(pageWithFiveElements);
-
-		return schoolRepository.findAllByName(name, allSchool.getPageable());
+		return schoolRepository.findAll(pageable);
 	}
 
+	@Override
 	public Optional<School> getSchool(Long id) {
 
 		return schoolRepository.findById(id);
