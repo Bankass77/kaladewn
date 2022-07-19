@@ -1,6 +1,5 @@
 package ml.kalanblow.kaladewn.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -16,6 +15,7 @@ import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
 public interface SchoolService {
 
 	Optional<School> getSchool(Long id);
+	
 	School createNewSchool(CreateSchoolParameters parameters);
 
 	School editSchool(Long id  ,EditSchoolParameters editSchoolParameters);

@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ml.kalanblow.kaladewn.repository.StudentRepositoryTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.212 s <<< FAILURE! - in ml.kalanblow.kaladewn.repository.StudentRepositoryTest
-testSaveStudent  Time elapsed: 0.223 s  <<< ERROR!
-javax.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'javax.validation.constraints.Email' validating type 'ml.kalanblow.kaladewn.domain.user.Email'. Check configuration for 'email'
-	at ml.kalanblow.kaladewn.repository.StudentRepositoryTest.testSaveStudent(StudentRepositoryTest.java:78)
-

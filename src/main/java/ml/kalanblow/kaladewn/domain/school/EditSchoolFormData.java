@@ -13,9 +13,9 @@ import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
 public class EditSchoolFormData extends CreateSchoolFormData {
 
 	private long id;
-	
-	public EditSchoolFormData(String name, PhoneNumber phoneNumber, Email email, Address address) {
-		
+
+	public EditSchoolFormData(String name, PhoneNumber phoneNumber, String email, Address address) {
+
 	}
 
 	public static EditSchoolFormData fromSchool(School school) {
@@ -25,9 +25,10 @@ public class EditSchoolFormData extends CreateSchoolFormData {
 	}
 
 	public EditSchoolParameters toParameters() {
+		EditSchoolParameters parameters = new EditSchoolParameters(getName(), new PhoneNumber(getPhoneNumber()),
+				new Email(getEmail()).asString(), getAddress());
+		return parameters;
 
-		return new EditSchoolParameters(getName(), getPhoneNumber(), getEmail(), getAddress());
 	}
 
-	
 }

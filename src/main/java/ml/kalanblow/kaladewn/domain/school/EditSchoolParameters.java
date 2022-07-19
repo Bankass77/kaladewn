@@ -6,12 +6,14 @@ import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
 
 public class EditSchoolParameters extends CreateSchoolParameters {
 
-	public EditSchoolParameters(String name, PhoneNumber phoneNumber, Email email, Address address) {
-		super(name, phoneNumber, email, address);
 
-	}
 
 	// tag::update[]
+	public EditSchoolParameters(String name, PhoneNumber phoneNumber, String email, Address address) {
+		super(name, phoneNumber, email, address);
+		
+	}
+
 	public void update(School school) {
 		school.setName(getName());
 		school.setAddress(getAddress());

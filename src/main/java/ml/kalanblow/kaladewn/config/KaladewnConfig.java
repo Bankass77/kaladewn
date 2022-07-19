@@ -1,8 +1,10 @@
 package ml.kalanblow.kaladewn.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -61,4 +63,12 @@ public class KaladewnConfig {
 		return viewResolver;
 	}
 
+	@Bean
+	public LocalValidatorFactoryBean localValidatorFactoryBean (MessageSource messageSource) {
+		
+		LocalValidatorFactoryBean bean= new LocalValidatorFactoryBean();
+		bean.setValidationMessageSource(messageSource);
+		
+		return bean;
+	}
 }

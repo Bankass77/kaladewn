@@ -12,7 +12,8 @@ public class CreateSchoolParameters {
 
 	private final String name;
 	private final PhoneNumber phoneNumber;
-	private final Email email;
+	private final String email;
 	private final Address address;
 	
+
 }

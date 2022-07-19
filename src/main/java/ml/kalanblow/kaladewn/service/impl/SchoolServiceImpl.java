@@ -1,14 +1,13 @@
 package ml.kalanblow.kaladewn.service.impl;
 
-import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import ml.kalanblow.kaladewn.domain.school.CreateSchoolParameters;
@@ -59,19 +58,21 @@ public class SchoolServiceImpl implements SchoolService {
 	@Override
 	public Optional<School> findByAddress(Address address) {
 
+		log.info("School Address: {}", schoolRepository.findByAddress(address));
 		return schoolRepository.findByAddress(address);
 	}
 
 	@Override
 	public Optional<School> findByEmail(Email email) {
 
+		log.info("School Email: {}", schoolRepository.findByEmail(email));
 		return schoolRepository.findByEmail(email);
 	}
 
 	@Override
 	public School createNewSchool(CreateSchoolParameters parameters) {
 		String schoolName = parameters.getName();
-		Email email = parameters.getEmail();
+		String email = parameters.getEmail();
 		PhoneNumber phoneNumber = parameters.getPhoneNumber();
 		Address address = parameters.getAddress();
 
@@ -82,6 +83,7 @@ public class SchoolServiceImpl implements SchoolService {
 		school.setName(schoolName);
 		school.setPhoneNumber(phoneNumber);
 
+		log.info("Creating school {})",schoolRepository.save(school));
 		return schoolRepository.save(school);
 	}
 
@@ -96,6 +98,7 @@ public class SchoolServiceImpl implements SchoolService {
 		school.get().setPhoneNumber(editSchoolParameters.getPhoneNumber());
 		school.get().setEmail(editSchoolParameters.getEmail());
 		school.get().setAddress(editSchoolParameters.getAddress());
+		log.info("Edit school :{}", school.get());
 		return school.get();
 	}
 
@@ -105,6 +108,7 @@ public class SchoolServiceImpl implements SchoolService {
 		Optional<School> schoolId = schoolRepository.findById(id);
 
 		if (schoolId.isPresent()) {
+			log.info("Delete school :{}", schoolId.get());
 			schoolRepository.deleteById(id);
 		}
 
@@ -119,13 +123,14 @@ public class SchoolServiceImpl implements SchoolService {
 
 	@Override
 	public Page<School> getAllSchoolList(Pageable pageable) {
-
+		log.info("School Name: {}", schoolRepository.findAll(pageable));
 		return schoolRepository.findAll(pageable);
 	}
 
 	@Override
 	public Optional<School> getSchool(Long id) {
 
+		log.info("School get id: {}", schoolRepository.findById(id));
 		return schoolRepository.findById(id);
 	}
 }
