@@ -21,7 +21,6 @@ import ml.kalanblow.kaladewn.exception.ExceptionType;
 import ml.kalanblow.kaladewn.exception.KaladewnManagementException;
 import ml.kalanblow.kaladewn.repository.SchoolRepository;
 import ml.kalanblow.kaladewn.service.SchoolService;
-import ml.kalanblow.kaladewn.service.StudentService;
 
 @Service
 @Transactional
@@ -29,13 +28,12 @@ import ml.kalanblow.kaladewn.service.StudentService;
 public class SchoolServiceImpl implements SchoolService {
 
 	private final SchoolRepository schoolRepository;
-	private final StudentService studentService;
 
 	@Autowired
-	public SchoolServiceImpl(SchoolRepository schoolRepository, StudentService studentService) {
+	public SchoolServiceImpl(SchoolRepository schoolRepository) {
 		super();
 		this.schoolRepository = schoolRepository;
-		this.studentService = studentService;
+
 	}
 
 	/**
@@ -83,7 +81,7 @@ public class SchoolServiceImpl implements SchoolService {
 		school.setName(schoolName);
 		school.setPhoneNumber(phoneNumber);
 
-		log.info("Creating school {})",schoolRepository.save(school));
+		log.info("Creating school {})", schoolRepository.save(school));
 		return schoolRepository.save(school);
 	}
 

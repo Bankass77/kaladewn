@@ -23,7 +23,7 @@ public class UserName {
 	@NotNull
 	@Size(min = 2, max = 200)
 	private String firstName;
-	
+
 	@NotBlank
 	@Size(min = 2, max = 200)
 	@NotNull

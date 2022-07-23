@@ -25,10 +25,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(excludes = { "school" })
 public class Student extends User {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Column(name = "ine_number")
 	private String ineNumber;
@@ -60,9 +56,5 @@ public class Student extends User {
 	@Column
 	@NotNull
 	private PhoneNumber motherMobile;
-
-
-
-	
 
 }

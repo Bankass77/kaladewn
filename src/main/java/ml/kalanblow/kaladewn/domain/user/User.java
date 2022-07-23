@@ -101,7 +101,7 @@ public abstract class User implements Serializable {
 	@NotNull(message = "Please enter a valid address email.")
 	@Column(unique = true, nullable = false, updatable = true, name = "email")
 	@EmailConstraint
-	private String  email;
+	private String email;
 
 	@NotNull
 	@Embedded

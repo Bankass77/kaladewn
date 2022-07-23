@@ -2,11 +2,11 @@ package ml.kalanblow.kaladewn.domain.user;
 
 import java.time.LocalDate;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CreateStudentParameters {
 	private final UserName userName;
 	private final Gender gender;
@@ -17,8 +17,8 @@ public class CreateStudentParameters {
 	private final String studentIneNumber;
 	private final String motherFirstName;
 	private final String motherLastName;
+	private final PhoneNumber fatherMobile;
 	private final String fatherLastName;
 	private final String fatherFirstName;
-	private final PhoneNumber fatherMobile;
 	private final PhoneNumber motherMobile;
 }

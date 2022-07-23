@@ -2,29 +2,53 @@ package ml.kalanblow.kaladewn.domain.user;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import ml.kalanblow.kaladewn.constraint.EmailConstraint;
+import ml.kalanblow.kaladewn.constraint.FrenchPhoneConstraint;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CreateStudentFormData {
+
 	@NotBlank
-	private String firstName;
-	@NotBlank
-	private String lastName;
+	@NotNull
+	private UserName userName;
 	@NotNull
 	private Gender gender;
 	@NotBlank
-	@Email
+
+	@EmailConstraint
 	private String email;
+
+	@FrenchPhoneConstraint
+	private PhoneNumber studentPhoneNumber;
+
 	@NotNull
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDate birthday;
 
-	@NotBlank
-	@Pattern(regexp = "^(?:(?:\\\\+|00)33[\\\\s.-]{0,3}(?:\\\\(0\\\\)[\\\\s.-]{0,3})?|0)[1-9](?:(?:[\\\\s.-]?\\\\d{2}){4}|\\\\d{2}(?:[\\\\s.-]?\\\\d{3}){2})$")
-	private String phoneNumber;
+	private Address address;
 
+	String ineNumber, motherFirstName, motherLastName;
+
+	@FrenchPhoneConstraint
+	PhoneNumber motherMobile;
+
+	String fatherLastName, fatherFirstName;
+
+	@FrenchPhoneConstraint
+	PhoneNumber fatherMobile;
+
+	public CreateStudentParameters toParameters() {
+		CreateStudentParameters parameters= new CreateStudentParameters(userName, gender, birthday, email, studentPhoneNumber, address, ineNumber, motherFirstName, motherLastName, 
+				fatherMobile, fatherLastName, fatherFirstName, motherMobile);
+		return parameters;
+	}
 }

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ml.kalanblow.kaladewn.domain.school.CreateSchoolFormData;
 import ml.kalanblow.kaladewn.domain.school.EditSchoolFormData;
 import ml.kalanblow.kaladewn.domain.school.School;
-import ml.kalanblow.kaladewn.domain.user.EditMode;
+import ml.kalanblow.kaladewn.domain.user.EditeMode;
 import ml.kalanblow.kaladewn.service.SchoolService;
 import ml.kalanblow.kaladewn.service.StudentService;
 import ml.kalanblow.kaladewn.validation.EditSchoolValidationGroupSequence;
@@ -55,7 +55,7 @@ public class SchoolController {
 
 		if (bindingResult.hasErrors()) {
 
-			modelAndView.addObject("editMode", EditMode.CREATE);
+			modelAndView.addObject("editMode", EditeMode.CREATE);
 
 			return new ModelAndView("school/editSchool");
 		}
@@ -82,7 +82,7 @@ public class SchoolController {
 
 		School school = schoolService.getSchool(id).get();
 		modelAndView.addObject("editSchool", EditSchoolFormData.fromSchool(school));
-		modelAndView.addObject("editMode", EditMode.UPDATE);
+		modelAndView.addObject("editMode", EditeMode.UPDATE);
 
 		return new ModelAndView("school/editSchool");
 	}
@@ -97,7 +97,7 @@ public class SchoolController {
 
 		if (bindingResult.hasErrors()) {
 
-			modelAndView.addObject("editMode", EditMode.UPDATE);
+			modelAndView.addObject("editMode", EditeMode.UPDATE);
 
 			return new ModelAndView("school/editSchool");
 		}
@@ -112,8 +112,8 @@ public class SchoolController {
 	@PostMapping("/{id}/delete")
 	public ModelAndView doDeleteSchool(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
 
-		Optional<School> school = schoolService.getSchool(id);
-		redirectAttributes.addFlashAttribute("deleteSchoolName", school.get().getName());
+		schoolService.deleteScholl(id);
+		redirectAttributes.addFlashAttribute("deleteSchoolName");
 
 		return new ModelAndView("redirect:/schoool/schoolList");
 	}

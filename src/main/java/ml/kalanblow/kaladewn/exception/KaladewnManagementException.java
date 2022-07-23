@@ -40,7 +40,7 @@ public class KaladewnManagementException extends Exception {
 	 * @param args
 	 * @return
 	 */
-	public static RuntimeException throwException(EntityType entityType, ExceptionType exceptionType, String... args) {
+	public RuntimeException throwException(EntityType entityType, ExceptionType exceptionType, String... args) {
 		String messageTemplate = getMessageTemplate(entityType, exceptionType);
 		return throwException(exceptionType, messageTemplate, args);
 	}

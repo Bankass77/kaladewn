@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import ml.kalanblow.kaladewn.domain.user.Address;
 import ml.kalanblow.kaladewn.domain.user.Email;
 import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
+import ml.kalanblow.kaladewn.domain.user.Student;
+import ml.kalanblow.kaladewn.domain.user.User;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +27,7 @@ public class EditSchoolFormData extends CreateSchoolFormData {
 	}
 
 	public EditSchoolParameters toParameters() {
+		
 		EditSchoolParameters parameters = new EditSchoolParameters(getName(), new PhoneNumber(getPhoneNumber()),
 				new Email(getEmail()).asString(), getAddress());
 		return parameters;

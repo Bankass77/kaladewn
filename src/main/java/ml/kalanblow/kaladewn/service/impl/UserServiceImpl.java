@@ -3,6 +3,8 @@ package ml.kalanblow.kaladewn.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +12,6 @@ import ml.kalanblow.kaladewn.domain.user.Email;
 import ml.kalanblow.kaladewn.domain.user.PhoneNumber;
 import ml.kalanblow.kaladewn.domain.user.User;
 import ml.kalanblow.kaladewn.domain.user.UserName;
-import ml.kalanblow.kaladewn.repository.SchoolRepository;
 import ml.kalanblow.kaladewn.repository.UserRepository;
 import ml.kalanblow.kaladewn.service.UserService;
 
@@ -19,13 +20,12 @@ import ml.kalanblow.kaladewn.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	private final SchoolRepository schoolRepository;
-
+	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository,SchoolRepository schoolRepository) {
+	public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
-		this.schoolRepository=schoolRepository;
+		
 	}
 
 	@Override
@@ -46,6 +46,32 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByPhoneNumber(phoneNumber);
 	}
 
-	
+	@Override
+	public boolean userWithEmailExists(Email email) {
+		return userRepository.existsByEmail(email);
+	}
+
+	@Override
+	public Optional<User> getUser(Long userId) {
+
+		return userRepository.findById(userId);
+	}
+
+	@Override
+	public Page<User> getUsers(Pageable pageable) {
+
+		return userRepository.findAll(pageable);
+	}
+
+	@Override
+	public void delete(Long id) {
+		userRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public void deleteAllUser() {
+		userRepository.deleteAll();
+	}
 
 }

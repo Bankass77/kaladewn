@@ -24,4 +24,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query("select u from User u")
 	Stream<User> streamAll();
 
+	boolean existsByEmail(Email email);
+
 }

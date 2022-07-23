@@ -7,10 +7,10 @@ public class EditStudentParameters extends CreateStudentParameters {
 
 	public EditStudentParameters(UserName userName, Gender gender, LocalDate birthday, String email,
 			PhoneNumber phoneNumber, Address address, String studentIneNumber, String motherFirstName,
-			String motherLastName, String fatherLastName, String fatherFirstName, PhoneNumber fatherMobile,
-			PhoneNumber motherMobile) {
+			String motherLastName,PhoneNumber motherMobile, String fatherLastName,
+			 String fatherFirstName, PhoneNumber fatherMobile) {
 		super(userName, gender, birthday, email, phoneNumber, address, studentIneNumber, motherFirstName,
-				motherLastName, fatherLastName, fatherFirstName, fatherMobile, motherMobile);
+				motherLastName, motherMobile, fatherLastName, fatherFirstName, fatherMobile);
 
 	}
 
@@ -29,7 +29,6 @@ public class EditStudentParameters extends CreateStudentParameters {
 		student.setMotherLastName(getMotherLastName());
 		student.setMotherMobile(getMotherMobile());
 		student.setPhoneNumber(getPhoneNumber());
-		//student.setSchool(null);
 		student.setUserName(getUserName());
 
 	}

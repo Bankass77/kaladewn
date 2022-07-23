@@ -9,7 +9,6 @@
  * org.springframework.context.annotation.Profile; import
  * org.springframework.stereotype.Component;
  * 
- * 
  * import com.github.javafaker.Faker; import com.github.javafaker.Name; import
  * org.apache.commons.lang3.StringUtils; import
  * ml.kalanblow.kaladewn.domain.user.Address; import
@@ -33,7 +32,7 @@
  * 
  * public UserDatabaseInitializer(StudentService studentService, SchoolService
  * schoolService) { super(); this.studentService = studentService;
- * this.schoolService=schoolService; }
+ * this.schoolService = schoolService; }
  * 
  * @Override public void run(String... args) throws Exception {
  * 
@@ -46,9 +45,11 @@
  * 
  * SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); DateTimeFormatter
  * df = new DateTimeFormatterBuilder() // case insensitive to parse JAN and FEB
- * .parseCaseInsensitive() // add pattern .appendPattern("dd-MM-yyyy") // create
- * formatter (use English Locale to parse month names)
- * .toFormatter(Locale.FRENCH);
+ * .parseCaseInsensitive() // add pattern .appendPattern("dd-MM-yyyy")
+ * .appendPattern("[M/dd/yyyy]") .appendPattern("[M/d/yyyy]")
+ * .appendPattern("[MM/dd/yyyy]") .appendPattern("[MMM dd yyyy]")
+ * .appendPattern("[MMM dd]") // createformatter (use French Locale to parse
+ * month names) .toFormatter(Locale.FRENCH);
  * 
  * Name name = faker.name(); PhoneNumber phoneNumber = new
  * PhoneNumber(faker.phoneNumber().phoneNumber());
@@ -69,16 +70,16 @@
  * PhoneNumber(faker.phoneNumber().phoneNumber());
  * 
  * LocalDate birthday = LocalDate.parse(sdf.format(faker.date().birthday()),
- * df);
+ * df); Gender gender= faker.bool().bool()? Gender.MALE:Gender.FEMALE;
  * 
  * Email email= new Email();
  * email.setEmail(faker.internet().emailAddress(generateEmailLocalPart(userName)
  * .asString())); String email2 = email.asString();
  * 
- * return new CreateStudentParameters(userName, Gender.FEMALE, birthday, email2,
+ * return new CreateStudentParameters(userName, gender, birthday, email2,
  * phoneNumber, address, numeroIne, userName.getFirstName(),
- * userName.getLastName(), userName.getFirstName(), userName.getLastName(),
- * fatherMobile, motherMobile);
+ * userName.getLastName(),motherMobile, userName.getFirstName(),
+ * userName.getLastName(), fatherMobile);
  * 
  * }
  * 

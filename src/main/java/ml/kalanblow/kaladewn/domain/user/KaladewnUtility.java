@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class KaladewnUtility {
-	
+
 	public static String generatingandomAlphaNumericStringWithFixedLength() {
 
 		int leftLimit = 48;
